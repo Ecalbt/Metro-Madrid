@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madrid Metro Pathfinder</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="map-panel" aria-label="Bản đồ metro Madrid">
+        <div id="map"></div>
+      </section>
+
+      <aside class="control-panel" aria-label="Điều khiển tìm đường">
+        <header class="panel-header">
+          <p class="eyebrow">Intro AI Project</p>
+          <h1>Madrid Metro </h1>
+        </header>
+
+        <section class="panel-section">
+          <h2>Chọn điểm trên bản đồ</h2>
+          <div class="selection-grid">
+            <div>
+              <span>Điểm đầu</span>
+              <strong id="startStation">Chưa chọn</strong>
+            </div>
+            <div>
+              <span>Điểm cuối</span>
+              <strong id="goalStation">Chưa chọn</strong>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="pickStartBtn" type="button" class="secondary">Chọn điểm đầu</button>
+            <button id="pickGoalBtn" type="button" class="secondary">Chọn điểm cuối</button>
+          </div>
+          <p id="pickHint" class="muted">Bấm nút chọn điểm rồi click một vị trí bất kỳ trên bản đồ.</p>
+          <div class="button-row">
+            <button id="findPathBtn" type="button">Tìm đường A*</button>
+            <button id="resetBtn" type="button" class="secondary">Đặt lại</button>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Ga đang xem</h2>
+          <p id="activeStationName" class="muted">Bấm vào một ga trên bản đồ.</p>
+          <div id="neighborList" class="edge-list"></div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Tuyến bị cấm</h2>
+          <div id="forbiddenList" class="edge-list empty">Chưa có tuyến bị cấm.</div>
+        </section>
+
+        <section class="panel-section result-section">
+          <h2>Kết quả</h2>
+          <div id="resultBox" class="result-box">
+            Chọn ga xuất phát và ga đích, sau đó bấm tìm đường.
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
