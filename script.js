@@ -328,6 +328,7 @@ function renderResult(result) {
 
   const stationNames = result.pathStations.map((id) => stationById[id].name);
   const usedLines = [...new Set(result.pathEdges.map((metroEdge) => metroEdge.line))];
+  const lineSegments = buildLineSegments(result);
   const startConnectorCost = haversine(startPoint, stationById[startId]);
   const goalConnectorCost = haversine(goalPoint, stationById[goalId]);
   const totalCost = result.totalCost + startConnectorCost + goalConnectorCost;
@@ -337,7 +338,12 @@ function renderResult(result) {
     <ul>
       <li>Điểm đầu nối tới ga gần nhất: ${stationById[startId].name} (${startConnectorCost.toFixed(2)} km)</li>
       <li>Điểm cuối nối tới ga gần nhất: ${stationById[goalId].name} (${goalConnectorCost.toFixed(2)} km)</li>
-      <li>${stationNames.join(" -> ")}</li>
+      <li>Đường đi theo tuyến:
+        <ol class="line-route">
+          ${lineSegments.map(renderLineSegment).join("")}
+        </ol>
+      </li>
+      <li>Toàn bộ ga: ${stationNames.join(" -> ")}</li>
       <li>Chi phí metro: ${result.totalCost.toFixed(2)} km</li>
       <li>Tổng chi phí gồm hai đoạn nối nét đứt: ${totalCost.toFixed(2)} km</li>
       <li>Số ga đi qua: ${result.pathStations.length}</li>
@@ -345,6 +351,31 @@ function renderResult(result) {
       <li>Số node A* đã mở rộng: ${result.visitedOrder.length}</li>
     </ul>
   `;
+}
+
+function buildLineSegments(result) {
+  if (result.pathEdges.length === 0) return [];
+
+  return result.pathEdges.reduce((segments, metroEdge, index) => {
+    const fromStation = stationById[result.pathStations[index]];
+    const toStation = stationById[result.pathStations[index + 1]];
+    const lastSegment = segments[segments.length - 1];
+
+    if (!lastSegment || lastSegment.line !== metroEdge.line) {
+      segments.push({
+        line: metroEdge.line,
+        stations: [fromStation.name, toStation.name],
+      });
+      return segments;
+    }
+
+    lastSegment.stations.push(toStation.name);
+    return segments;
+  }, []);
+}
+
+function renderLineSegment(segment) {
+  return `<li><strong>${segment.line}</strong>: ${segment.stations.join(" -> ")}</li>`;
 }
 
 function updateMarkerIcons() {

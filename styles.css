@@ -232,6 +232,15 @@ button.secondary:hover {
   padding-left: 18px;
 }
 
+.line-route {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
+.line-route li + li {
+  margin-top: 4px;
+}
+
 .station-marker {
   display: grid;
   place-items: center;
