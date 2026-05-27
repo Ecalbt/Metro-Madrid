@@ -1,6 +1,6 @@
 # Madrid Metro A* Pathfinder
 
-Demo web cho bài tập lớn Intro AI: mô hình hóa một phần mạng metro Madrid thành đồ thị và dùng thuật toán A* để tìm đường đi ngắn nhất khi có thể cấm một số đoạn nối trực tiếp giữa hai ga.
+Demo web cho bài tập lớn Intro AI: mô hình hóa mạng Metro Madrid từ dữ liệu GTFS của CRTM thành đồ thị và dùng thuật toán A* để tìm đường đi ngắn nhất khi có thể cấm một số đoạn nối trực tiếp giữa hai ga.
 
 ## Cách chạy
 
@@ -14,9 +14,19 @@ Sau đó mở `http://localhost:5173`.
 
 Ứng dụng dùng Leaflet và OpenStreetMap qua CDN, nên máy cần internet để tải thư viện và nền bản đồ.
 
+## Cập nhật dữ liệu Metro Madrid
+
+Các file GTFS tải về nằm trong thư mục `api/`. Để sinh lại dữ liệu cho website, chạy:
+
+```bash
+python3 tools/build_metro_data.py
+```
+
+Script sẽ đọc `stops.txt`, `routes.txt`, `trips.txt`, `stop_times.txt` và sinh file `data/metro-madrid.js`. File hiện tại có 230 ga, 262 cạnh và 13 tuyến metro.
+
 ## Chức năng
 
-- Hiển thị các ga metro Madrid demo trên bản đồ. Dữ liệu hiện là tập con gồm 39 ga và 48 cạnh, chưa phải toàn bộ mạng Metro Madrid thật.
+- Hiển thị các ga Metro Madrid từ dữ liệu GTFS CRTM trên bản đồ.
 - Mỗi ga là một node, mỗi đoạn nối giữa hai ga là một edge.
 - Chọn điểm đầu và điểm cuối bằng cách click hai vị trí bất kỳ trên bản đồ.
 - Hệ thống tự tìm ga gần nhất với mỗi điểm và nối bằng đường nét đứt.
@@ -31,6 +41,8 @@ Sau đó mở `http://localhost:5173`.
 
 - `stations`: danh sách ga, gồm `id`, `name`, `lat`, `lng`.
 - `edges`: danh sách cạnh, gồm `from`, `to`, `line`, `weight`.
+- `data/metro-madrid.js`: dữ liệu sinh tự động từ GTFS, được load trước `script.js`.
+- `tools/build_metro_data.py`: script convert GTFS sang cấu trúc graph dùng trong web.
 - `startPoint`, `goalPoint`: hai điểm bất kỳ người dùng click trên bản đồ.
 - `startId`, `goalId`: ga gần nhất với hai điểm đó, dùng làm node bắt đầu/kết thúc cho A*.
 - `forbiddenEdges`: `Set` lưu id các edge bị cấm.

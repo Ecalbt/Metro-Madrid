@@ -1,106 +1,8 @@
-const stations = [
-  { id: "sol", name: "Sol", lat: 40.4169, lng: -3.7033 },
-  { id: "granvia", name: "Gran Via", lat: 40.4203, lng: -3.7018 },
-  { id: "callao", name: "Callao", lat: 40.4201, lng: -3.7058 },
-  { id: "opera", name: "Opera", lat: 40.4182, lng: -3.7094 },
-  { id: "tribunal", name: "Tribunal", lat: 40.4260, lng: -3.7011 },
-  { id: "bilbao", name: "Bilbao", lat: 40.4290, lng: -3.7022 },
-  { id: "alonso", name: "Alonso Martinez", lat: 40.4277, lng: -3.6956 },
-  { id: "chueca", name: "Chueca", lat: 40.4229, lng: -3.6976 },
-  { id: "banco", name: "Banco de Espana", lat: 40.4195, lng: -3.6936 },
-  { id: "retiro", name: "Retiro", lat: 40.4203, lng: -3.6863 },
-  { id: "atocha", name: "Atocha", lat: 40.4066, lng: -3.6894 },
-  { id: "lavapies", name: "Lavapies", lat: 40.4086, lng: -3.7009 },
-  { id: "embajadores", name: "Embajadores", lat: 40.4051, lng: -3.7027 },
-  { id: "delicias", name: "Delicias", lat: 40.4004, lng: -3.6942 },
-  { id: "arguelles", name: "Arguelles", lat: 40.4305, lng: -3.7157 },
-  { id: "moncloa", name: "Moncloa", lat: 40.4346, lng: -3.7191 },
-  { id: "plazaespana", name: "Plaza de Espana", lat: 40.4238, lng: -3.7114 },
-  { id: "noviciado", name: "Noviciado", lat: 40.4253, lng: -3.7074 },
-  { id: "cuatrocaminos", name: "Cuatro Caminos", lat: 40.4469, lng: -3.7037 },
-  { id: "riosrosas", name: "Rios Rosas", lat: 40.4419, lng: -3.7016 },
-  { id: "iglesia", name: "Iglesia", lat: 40.4351, lng: -3.6987 },
-  { id: "castellana", name: "Gregorio Maranon", lat: 40.4380, lng: -3.6919 },
-  { id: "nuevosministerios", name: "Nuevos Ministerios", lat: 40.4466, lng: -3.6924 },
-  { id: "cuzco", name: "Cuzco", lat: 40.4584, lng: -3.6896 },
-  { id: "plazacastilla", name: "Plaza de Castilla", lat: 40.4669, lng: -3.6892 },
-  { id: "santiagobernabeu", name: "Santiago Bernabeu", lat: 40.4516, lng: -3.6904 },
-  { id: "principepio", name: "Principe Pio", lat: 40.4210, lng: -3.7203 },
-  { id: "puertatoledo", name: "Puerta de Toledo", lat: 40.4070, lng: -3.7110 },
-  { id: "piramedes", name: "Piramedes", lat: 40.4026, lng: -3.7137 },
-  { id: "legazpi", name: "Legazpi", lat: 40.3911, lng: -3.6950 },
-  { id: "mendezalvaro", name: "Mendez Alvaro", lat: 40.3953, lng: -3.6781 },
-  { id: "pacifico", name: "Pacifico", lat: 40.4012, lng: -3.6751 },
-  { id: "manuelbecerra", name: "Manuel Becerra", lat: 40.4279, lng: -3.6693 },
-  { id: "goya", name: "Goya", lat: 40.4248, lng: -3.6755 },
-  { id: "velazquez", name: "Velazquez", lat: 40.4250, lng: -3.6831 },
-  { id: "serrano", name: "Serrano", lat: 40.4254, lng: -3.6876 },
-  { id: "colon", name: "Colon", lat: 40.4254, lng: -3.6910 },
-  { id: "sevilla", name: "Sevilla", lat: 40.4181, lng: -3.6993 },
-  { id: "sainzbaranda", name: "Sainz de Baranda", lat: 40.4150, lng: -3.6695 },
-];
-
-const edges = [
-  edge("sol", "granvia", "Line 1"),
-  edge("granvia", "tribunal", "Line 1"),
-  edge("tribunal", "bilbao", "Line 1"),
-  edge("sol", "lavapies", "Line 3"),
-  edge("lavapies", "embajadores", "Line 3"),
-  edge("embajadores", "delicias", "Line 3"),
-  edge("sol", "callao", "Line 3"),
-  edge("callao", "plazaespana", "Line 3"),
-  edge("plazaespana", "arguelles", "Line 3"),
-  edge("arguelles", "moncloa", "Line 3"),
-  edge("sol", "opera", "Line 2"),
-  edge("opera", "plazaespana", "Line 2"),
-  edge("plazaespana", "noviciado", "Line 2"),
-  edge("noviciado", "tribunal", "Line 2"),
-  edge("granvia", "chueca", "Line 5"),
-  edge("chueca", "alonso", "Line 5"),
-  edge("alonso", "bilbao", "Line 4"),
-  edge("sol", "banco", "Line 2"),
-  edge("banco", "retiro", "Line 2"),
-  edge("banco", "atocha", "Line 1"),
-  edge("atocha", "delicias", "Line 1"),
-  edge("atocha", "lavapies", "Line 1"),
-  edge("opera", "callao", "Line 5"),
-  edge("bilbao", "iglesia", "Line 1"),
-  edge("iglesia", "riosrosas", "Line 1"),
-  edge("riosrosas", "cuatrocaminos", "Line 1"),
-  edge("alonso", "castellana", "Line 10"),
-  edge("castellana", "nuevosministerios", "Line 10"),
-  edge("nuevosministerios", "santiagobernabeu", "Line 10"),
-  edge("santiagobernabeu", "cuzco", "Line 10"),
-  edge("cuzco", "plazacastilla", "Line 10"),
-  edge("arguelles", "principepio", "Line 6"),
-  edge("principepio", "puertatoledo", "Line 5"),
-  edge("puertatoledo", "piramedes", "Line 5"),
-  edge("piramedes", "legazpi", "Line 5"),
-  edge("legazpi", "delicias", "Line 3"),
-  edge("legazpi", "mendezalvaro", "Line 6"),
-  edge("mendezalvaro", "pacifico", "Line 6"),
-  edge("pacifico", "sainzbaranda", "Line 6"),
-  edge("sainzbaranda", "manuelbecerra", "Line 6"),
-  edge("manuelbecerra", "goya", "Line 2"),
-  edge("goya", "retiro", "Line 2"),
-  edge("goya", "velazquez", "Line 4"),
-  edge("velazquez", "serrano", "Line 4"),
-  edge("serrano", "colon", "Line 4"),
-  edge("colon", "alonso", "Line 4"),
-  edge("sol", "sevilla", "Line 2"),
-  edge("sevilla", "banco", "Line 2"),
-].filter(Boolean);
-
+const metroData = window.METRO_DATA;
+const stations = metroData.stations;
+const edges = metroData.edges;
 const stationById = Object.fromEntries(stations.map((station) => [station.id, station]));
-const lineColors = {
-  "Line 1": "#00a3e0",
-  "Line 2": "#e03131",
-  "Line 3": "#f59f00",
-  "Line 4": "#7b2cbf",
-  "Line 5": "#2f9e44",
-  "Line 6": "#868e96",
-  "Line 10": "#1c7ed6",
-};
+const lineColors = metroData.lineColors;
 
 let startId = null;
 let goalId = null;
@@ -139,23 +41,6 @@ document.getElementById("pickStartBtn").addEventListener("click", () => setPickM
 document.getElementById("pickGoalBtn").addEventListener("click", () => setPickMode("goal"));
 document.getElementById("findPathBtn").addEventListener("click", findAndRenderPath);
 document.getElementById("resetBtn").addEventListener("click", resetSelections);
-
-function edge(from, to, line, weight, validate = true) {
-  if (validate && (!stations.some((s) => s.id === from) || !stations.some((s) => s.id === to))) {
-    return null;
-  }
-
-  const fromStation = stations.find((station) => station.id === from);
-  const toStation = stations.find((station) => station.id === to);
-  const distance = weight ?? haversine(fromStation, toStation);
-  return {
-    id: edgeKey(from, to),
-    from,
-    to,
-    line,
-    weight: Number(distance.toFixed(2)),
-  };
-}
 
 function drawStations() {
   stations.forEach((station) => {
@@ -606,10 +491,6 @@ function toggleForbidden(edgeId) {
   }
   pathEdgeKeys = new Set();
   renderAll();
-}
-
-function edgeKey(a, b) {
-  return [a, b].sort().join("__");
 }
 
 function findNearestStation(point) {
