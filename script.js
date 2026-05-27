@@ -579,6 +579,7 @@ function edgeStyle(metroEdge) {
     return {
       color: "#f59f00",
       weight: 8,
+      dashArray: null,
       opacity: 0.95,
     };
   }
@@ -586,6 +587,7 @@ function edgeStyle(metroEdge) {
   return {
     color: lineColors[metroEdge.line] || "#0b7285",
     weight: 4,
+    dashArray: null,
     opacity: 0.72,
   };
 }
