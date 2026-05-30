@@ -1379,7 +1379,214 @@ window.METRO_DATA = {
       "name": "ACACIAS",
       "lat": 40.40387,
       "lng": -3.70664
-    }
+    },
+    // begin of light metro station
+	{
+		      "id": "est_4_601",
+		      "name": "FUENTE DE LA MORA",
+		      "lat": 40.48468,
+		      "lng": -3.66306
+	},
+	{
+		      "id": "est_4_602",
+		      "name": "VIRGEN DEL CORTIJO",
+		      "lat": 40.48724,
+		      "lng": -3.66122
+		},
+		{
+		      "id": "est_4_603",
+		      "name": "ANTONIO SAURA",
+		      "lat": 40.48536,
+		      "lng": -3.65373
+		},
+		{
+		      "id": "est_4_604",
+		      "name": "ÁLVAREZ DE VILLAAMIL",
+		      "lat": 40.48917,
+		      "lng": -3.65138
+		},
+		{
+		      "id": "est_4_605",
+		      "name": "BLASCO IBÁÑEZ",
+		      "lat": 40.49367,
+		      "lng": -3.65584
+		},
+		{
+		      "id": "est_4_606",
+		      "name": "MARÍA TUDOR",
+		      "lat": 40.49760,
+		      "lng": -3.65844
+		},
+		{
+		      "id": "est_4_607",
+		      "name": "PALAS DE REY",
+		      "lat": 40.50546,
+		      "lng": -3.66510
+		},
+		{
+		      "id": "est_4_631",
+		      "name": "PRADO DE LA VEGA",
+		      "lat": 40.40228,
+		      "lng": -3.78132
+		},
+		{
+		      "id": "est_4_632",
+		      "name": "COLONIA DE LOS ÁNGELES",
+		      "lat": 40.40722,
+		      "lng": -3.78450
+		},
+		{
+		      "id": "est_4_633",
+		      "name": "PRADO DEL REY",
+		      "lat": 40.41043,
+		      "lng": -3.78755
+		},
+		{
+		      "id": "est_4_634",
+		      "name": "SOMOSAGUAS SUR",
+		      "lat": 40.41574,
+		      "lng": -3.79259
+		},
+		{
+		      "id": "est_4_635",
+		      "name": "SOMOSAGUAS CENTRO",
+		      "lat": 40.41928,
+		      "lng": -3.79876
+		},
+		{
+		      "id": "est_4_636",
+		      "name": "POZUELO OESTE",
+		      "lat": 40.42307,
+		      "lng": -3.80459
+		},
+		{
+		      "id": "est_4_637",
+		      "name": "BÉLGICA",
+		      "lat": 40.43059,
+		      "lng": -3.80753
+		},
+		{
+		      "id": "est_4_638",
+		      "name": "DOS CASTILLAS",
+		      "lat": 40.43254,
+		      "lng": -3.80161
+		},
+		{
+		      "id": "est_4_639",
+		      "name": "CAMPUS DE SOMOSAGUAS",
+		      "lat": 40.43344,
+		      "lng": -3.79514
+		},
+		{
+		      "id": "est_4_640",
+		      "name": "AVENIDA DE EUROPA",
+		      "lat": 40.43909,
+		      "lng": -3.79303
+		},
+		{
+		      "id": "est_4_641",
+		      "name": "BERNA",
+		      "lat": 40.44481,
+		      "lng": -3.79117
+		},
+		{
+		      "id": "est_4_642",
+		      "name": "ARAVACA",
+		      "lat": 40.44834,
+		      "lng": -3.78631
+		},
+		{
+		      "id": "est_4_661",
+		      "name": "CIUDAD DE LA IMAGEN",
+		      "lat": 40.39709,
+		      "lng": -3.78399
+		},
+		{
+		      "id": "est_4_662",
+		      "name": "JOSÉ ISBERT",
+		      "lat": 40.39526,
+		      "lng": -3.78992
+		},
+		{
+		      "id": "est_4_663",
+		      "name": "CIUDAD DEL CINE",
+		      "lat": 40.39454,
+		      "lng": -3.79568
+		},
+		{
+		      "id": "est_4_664",
+		      "name": "COCHERAS",
+		      "lat": 40.39688,
+		      "lng": -3.80385
+		},
+		{
+		      "id": "est_4_665",
+		      "name": "RETAMARES",
+		      "lat": 40.39871,
+		      "lng": -3.81674
+		},
+		{
+		      "id": "est_4_666",
+		      "name": "MONTEPRÍNCIPE",
+		      "lat": 40.39793,
+		      "lng": -3.83579
+		},
+		{
+		      "id": "est_4_667",
+		      "name": "VENTORRO DEL CANO",
+		      "lat": 40.39420,
+		      "lng": -3.83807
+		},
+		{
+		      "id": "est_4_668",
+		      "name": "PRADO DEL ESPINO",
+		      "lat": 40.39502,
+		      "lng": -3.84769
+		},
+		{
+		      "id": "est_4_669",
+		      "name": "CANTABRIA",
+		      "lat": 40.39529,
+		      "lng": -3.86433
+		},
+		{
+		      "id": "est_4_670",
+		      "name": "FERIAL DE BOADILLA",
+		      "lat": 40.40197,
+		      "lng": -3.87938
+		},
+		{
+		      "id": "est_4_671",
+		      "name": "BOADILLA CENTRO",
+		      "lat": 40.40717,
+		      "lng": -3.88008
+		},
+		{
+		      "id": "est_4_672",
+		      "name": "NUEVO MUNDO",
+		      "lat": 40.40564,
+		      "lng": -3.88569
+		},
+		{
+		      "id": "est_4_673",
+		      "name": "SIGLO XXI",
+		      "lat": 40.40513,
+		      "lng": -3.89264
+		},
+		{
+		      "id": "est_4_674",
+		      "name": "INFANTE DON LUIS",
+		      "lat": 40.40594,
+		      "lng": -3.89714
+		},
+		{
+		      "id": "est_4_675",
+		      "name": "PUERTA DE BOADILLA",
+		      "lat": 40.40785,
+		      "lng": -3.90401
+		}
+		
+		// end of light metro station
   ],
   "edges": [
     {
@@ -3215,7 +3422,254 @@ window.METRO_DATA = {
       "to": "est_90_18",
       "line": "Line R",
       "weight": 0.98
-    }
+    },
+    // begin of light metro route
+	{
+			      "id": "ML1__est_4_263__est_4_601",
+			      "from": "est_4_263",
+			      "to": "est_4_601",
+			      "line": "Line ML1",
+			      "weight": 0.62
+	},
+	{
+		      "id": "ML1__est_4_601__est_4_602",
+		      "from": "est_4_601",
+		      "to": "est_4_602",
+		      "line": "Line ML1",
+		      "weight": 0.41
+		},
+		{
+			      "id": "ML1__est_4_602__est_4_603",
+			      "from": "est_4_602",
+			      "to": "est_4_603",
+			      "line": "Line ML1",
+			      "weight": 0.79
+		},
+		{
+			      "id": "ML1__est_4_603__est_4_604",
+			      "from": "est_4_603",
+			      "to": "est_4_604",
+			      "line": "Line ML1",
+			      "weight": 0.51
+		},
+		{
+			      "id": "ML1__est_4_604__est_4_605",
+			      "from": "est_4_604",
+			      "to": "est_4_605",
+			      "line": "Line ML1",
+			      "weight": 0.64
+		},
+		{
+			      "id": "ML1__est_4_605__est_4_606",
+			      "from": "est_4_605",
+			      "to": "est_4_606",
+			      "line": "Line ML1",
+			      "weight": 0.56
+		},
+		{
+			      "id": "ML1__est_4_606__est_4_607",
+			      "from": "est_4_606",
+			      "to": "est_4_607",
+			      "line": "Line ML1",
+			      "weight": 1.25
+		},
+		{
+			      "id": "ML1__est_4_607__est_4_276",
+			      "from": "est_4_607",
+			      "to": "est_4_276",
+			      "line": "Line ML1",
+			      "weight": 0.48
+		},
+		{
+				    "id": "ML2__est_4_202__est_4_631",
+				    "from": "est_4_202",
+				    "to": "est_4_631",
+				    "line": "Line ML2",
+				    "weight": 0.87
+				  },
+		  {
+		    "id": "ML2__est_4_631__est_4_632",
+		    "from": "est_4_631",
+		    "to": "est_4_632",
+		    "line": "Line ML2",
+		    "weight": 0.62
+		  },
+		  {
+		    "id": "ML2__est_4_632__est_4_633",
+		    "from": "est_4_632",
+		    "to": "est_4_633",
+		    "line": "Line ML2",
+		    "weight": 0.43
+		  },
+		  {
+		    "id": "ML2__est_4_633__est_4_634",
+		    "from": "est_4_633",
+		    "to": "est_4_634",
+		    "line": "Line ML2",
+		    "weight": 0.75
+		  },
+		  {
+		    "id": "ML2__est_4_634__est_4_635",
+		    "from": "est_4_634",
+		    "to": "est_4_635",
+		    "line": "Line ML2",
+		    "weight": 0.82
+		  },
+		  {
+		    "id": "ML2__est_4_635__est_4_636",
+		    "from": "est_4_635",
+		    "to": "est_4_636",
+		    "line": "Line ML2",
+		    "weight": 0.65
+		  },
+		  {
+		    "id": "ML2__est_4_636__est_4_637",
+		    "from": "est_4_636",
+		    "to": "est_4_637",
+		    "line": "Line ML2",
+		    "weight": 1.26
+		  },
+		  {
+		    "id": "ML2__est_4_637__est_4_638",
+		    "from": "est_4_637",
+		    "to": "est_4_638",
+		    "line": "Line ML2",
+		    "weight": 0.55
+		  },
+		  {
+		    "id": "ML2__est_4_638__est_4_639",
+		    "from": "est_4_638",
+		    "to": "est_4_639",
+		    "line": "Line ML2",
+		    "weight": 0.58
+		  },
+		  {
+		    "id": "ML2__est_4_639__est_4_640",
+		    "from": "est_4_639",
+		    "to": "est_4_640",
+		    "line": "Line ML2",
+		    "weight": 0.68
+		  },
+		  {
+		    "id": "ML2__est_4_640__est_4_641",
+		    "from": "est_4_640",
+		    "to": "est_4_641",
+		    "line": "Line ML2",
+		    "weight": 0.68
+		  },
+		  {
+		    "id": "ML2__est_4_641__est_4_642",
+		    "from": "est_4_641",
+		    "to": "est_4_642",
+		    "line": "Line ML2",
+		    "weight": 0.68
+		  },
+		  {
+		  		  		"id": "ML3__est_4_202__est_4_661",
+		  		  		"from": "est_4_202",
+		  		  		"to": "est_4_661",
+		  		  		"line": "Line ML3",
+		  		  		"weight": 0.94
+		  		  	},
+		  	{
+		  		"id": "ML3__est_4_661__est_4_662",
+		  		"from": "est_4_661",
+		  		"to": "est_4_662",
+		  		"line": "Line ML3",
+		  		"weight": 0.54
+		  	},
+		  	{
+		  		"id": "ML3__est_4_662__est_4_663",
+		  		"from": "est_4_662",
+		  		"to": "est_4_663",
+		  		"line": "Line ML3",
+		  		"weight": 0.48
+		  	},
+		  	{
+		  		"id": "ML3__est_4_663__est_4_664",
+		  		"from": "est_4_663",
+		  		"to": "est_4_664",
+		  		"line": "Line ML3",
+		  		"weight": 0.95
+		  	},
+		  	{
+		  		"id": "ML3__est_4_664__est_4_665",
+		  		"from": "est_4_664",
+		  		"to": "est_4_665",
+		  		"line": "Line ML3",
+		  		"weight": 1.27
+		  	},
+		  	{
+		  		"id": "ML3__est_4_665__est_4_666",
+		  		"from": "est_4_665",
+		  		"to": "est_4_666",
+		  		"line": "Line ML3",
+		  		"weight": 1.77
+		  	},
+		  	{
+		  		"id": "ML3__est_4_666__est_4_667",
+		  		"from": "est_4_666",
+		  		"to": "est_4_667",
+		  		"line": "Line ML3",
+		  		"weight": 0.48
+		  	},
+		  	{
+		  		"id": "ML3__est_4_667__est_4_668",
+		  		"from": "est_4_667",
+		  		"to": "est_4_668",
+		  		"line": "Line ML3",
+		  		"weight": 0.83
+		  	},
+		  	{
+		  		"id": "ML3__est_4_668__est_4_669",
+		  		"from": "est_4_668",
+		  		"to": "est_4_669",
+		  		"line": "Line ML3",
+		  		"weight": 1.52
+		  	},
+		  	{
+		  		"id": "ML3__est_4_669__est_4_670",
+		  		"from": "est_4_669",
+		  		"to": "est_4_670",
+		  		"line": "Line ML3",
+		  		"weight": 1.83
+		  	},
+		  	{
+		  		"id": "ML3__est_4_670__est_4_671",
+		  		"from": "est_4_670",
+		  		"to": "est_4_671",
+		  		"line": "Line ML3",
+		  		"weight": 0.68
+		  	},
+		  	{
+		  		"id": "ML3__est_4_671__est_4_672",
+		  		"from": "est_4_671",
+		  		"to": "est_4_672",
+		  		"line": "Line ML3",
+		  		"weight": 0.61
+		  	},
+		  	{
+		  		"id": "ML3__est_4_672__est_4_673",
+		  		"from": "est_4_672",
+		  		"to": "est_4_673",
+		  		"line": "Line ML3",
+		  		"weight": 0.60
+		  	},
+		  	{
+		  		"id": "ML3__est_4_673__est_4_674",
+		  		"from": "est_4_673",
+		  		"to": "est_4_674",
+		  		"line": "Line ML3",
+		  		"weight": 0.42
+		  	},
+		  	{
+		  		"id": "ML3__est_4_674__est_4_675",
+		  		"from": "est_4_674",
+		  		"to": "est_4_675",
+		  		"line": "Line ML3",
+		  		"weight": 0.60
+		  	}
+		// end of light metro route
   ],
   "lineColors": {
     "Line 1": "#2DBEF0",
@@ -3230,12 +3684,16 @@ window.METRO_DATA = {
     "Line 10": "#005AA9",
     "Line 11": "#009B3A",
     "Line 12": "#A49800",
-    "Line R": "#005AA9"
+    "Line R": "#005AA9",
+    // light metro
+	"Line ML1": "#0000ff",
+	"Line ML2": "#660066",
+	"Line ML3": "#ff3300"
   },
   "metadata": {
     "source": "CRTM GTFS Red de Metro",
-    "stationCount": 230,
-    "edgeCount": 262,
-    "routeCount": 13
+    "stationCount": 264,
+    "edgeCount": 297,
+    "routeCount": 16
   }
 };
