@@ -493,7 +493,7 @@ function edgeStyle(metroEdge) {
 
   if (pathEdgeKeys.has(metroEdge.id)) {
     return {
-      color: "#f59f00",
+      color: "#1e40af",
       weight: 8,
       dashArray: null,
       opacity: 0.95,
