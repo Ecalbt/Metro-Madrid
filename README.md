@@ -52,7 +52,7 @@ Script sẽ đọc `stops.txt`, `routes.txt`, `trips.txt`, `stop_times.txt` và 
 - `findNearestStation(point)`: tìm ga gần nhất với điểm bất kỳ trên bản đồ.
 - `renderResult(result)`: hiển thị đường đi tối ưu và thống kê.
 
-## Giải thích khi bảo vệ
+## Giải thích
 
 Bài toán subway có thể mô hình hóa thành đồ thị vì hệ thống metro gồm các điểm dừng và các đoạn nối giữa chúng. Mỗi ga là một node vì đó là trạng thái/vị trí mà người dùng có thể đứng. Mỗi đoạn nối trực tiếp giữa hai ga là một edge vì tàu có thể đi từ ga này sang ga kia. Edge cần trọng số để biểu diễn chi phí di chuyển, ví dụ khoảng cách hoặc thời gian.
 
