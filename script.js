@@ -12,6 +12,7 @@ let pickMode = null;
 let activeStationId = null;
 let pathEdgeKeys = new Set();
 let forbiddenEdges = new Set();
+let showAllLines = false;
 
 const markers = new Map();
 const edgeLayers = new Map();
@@ -41,6 +42,7 @@ document.getElementById("pickStartBtn").addEventListener("click", () => setPickM
 document.getElementById("pickGoalBtn").addEventListener("click", () => setPickMode("goal"));
 document.getElementById("findPathBtn").addEventListener("click", findAndRenderPath);
 document.getElementById("resetBtn").addEventListener("click", resetSelections);
+document.getElementById("toggleLinesBtn").addEventListener("click", toggleShowAllLines);
 
 function drawStations() {
   stations.forEach((station) => {
@@ -107,14 +109,18 @@ function resetSelections() {
   activeStationId = null;
   pathEdgeKeys = new Set();
   forbiddenEdges = new Set();
+  showAllLines = false;
   removePointMarkers();
   renderAll();
 }
 
 function findAndRenderPath() {
   if (!startPoint || !goalPoint || !startId || !goalId) {
-    document.getElementById("resultBox").textContent =
-      "Vui lòng chọn đủ điểm đầu và điểm cuối trên bản đồ.";
+    showNotify(
+      "warning",
+      "Thiếu thông tin",
+      "Vui lòng chọn đủ điểm đầu và điểm cuối trên bản đồ trước khi tìm đường."
+    );
     return;
   }
 
@@ -234,6 +240,8 @@ function renderAll() {
   renderPickMode();
   renderActiveStation();
   renderForbiddenList();
+  renderToggleButton();
+  renderLineLegend();
   updatePointMarkers();
   updateMarkerIcons();
   updateEdgeStyles();
@@ -321,8 +329,16 @@ function renderResult(result) {
   const resultBox = document.getElementById("resultBox");
 
   if (!result.found) {
-    resultBox.textContent =
-      "Không tìm thấy đường đi phù hợp do các tuyến đường bị cấm.";
+    const blockedCount = forbiddenEdges.size;
+    showNotify(
+      "error",
+      "Không tìm thấy đường đi",
+      `Thuật toán A* không thể tìm được đường đi từ <strong>${stationById[startId].name}</strong> đến <strong>${stationById[goalId].name}</strong>.<br><br>` +
+      (blockedCount > 0
+        ? `Hiện có <strong>${blockedCount}</strong> tuyến bị cấm. Hãy thử bỏ cấm một số tuyến rồi tìm lại.`
+        : `Hai ga này có thể không nằm trên cùng một mạng lưới liên thông.`)
+    );
+    resultBox.innerHTML = `<span style="color:var(--danger);font-weight:600">✕ Không tìm thấy đường đi.</span>`;
     return;
   }
 
@@ -334,22 +350,45 @@ function renderResult(result) {
   const totalCost = result.totalCost + startConnectorCost + goalConnectorCost;
 
   resultBox.innerHTML = `
-    <strong>Đường đi tối ưu:</strong>
-    <ul>
-      <li>Điểm đầu nối tới ga gần nhất: ${stationById[startId].name} (${startConnectorCost.toFixed(2)} km)</li>
-      <li>Điểm cuối nối tới ga gần nhất: ${stationById[goalId].name} (${goalConnectorCost.toFixed(2)} km)</li>
-      <li>Đường đi theo tuyến:
-        <ol class="line-route">
-          ${lineSegments.map(renderLineSegment).join("")}
-        </ol>
-      </li>
-      <li>Toàn bộ ga: ${stationNames.join(" -> ")}</li>
-      <li>Chi phí metro: ${result.totalCost.toFixed(2)} km</li>
-      <li>Tổng chi phí gồm hai đoạn nối nét đứt: ${totalCost.toFixed(2)} km</li>
-      <li>Số ga đi qua: ${result.pathStations.length}</li>
-      <li>Tuyến metro cần dùng: ${usedLines.join(", ")}</li>
-      <li>Số node A* đã mở rộng: ${result.visitedOrder.length}</li>
-    </ul>
+    <div class="result-header">Đường đi tối ưu</div>
+
+    <div class="result-stats">
+      <div class="stat-card">
+        <span class="stat-value">${totalCost.toFixed(2)}</span>
+        <span class="stat-label">km tổng</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">${result.pathStations.length}</span>
+        <span class="stat-label">ga đi qua</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">${usedLines.length}</span>
+        <span class="stat-label">tuyến</span>
+      </div>
+    </div>
+
+    <div class="result-connectors">
+      <div class="connector-info start-connector">
+        <span class="connector-dot start"></span>
+        <span>Điểm đầu → <strong>${stationById[startId].name}</strong> (${startConnectorCost.toFixed(2)} km)</span>
+      </div>
+    </div>
+
+    <div class="route-timeline">
+      ${lineSegments.map((seg, i) => renderTimelineSegment(seg, i, lineSegments.length)).join("")}
+    </div>
+
+    <div class="result-connectors">
+      <div class="connector-info goal-connector">
+        <span class="connector-dot goal"></span>
+        <span><strong>${stationById[goalId].name}</strong> → Điểm cuối (${goalConnectorCost.toFixed(2)} km)</span>
+      </div>
+    </div>
+
+    <details class="route-details">
+      <summary>Xem toàn bộ ga</summary>
+      <p class="full-route">${stationNames.join(" → ")}</p>
+    </details>
   `;
 }
 
@@ -374,8 +413,40 @@ function buildLineSegments(result) {
   }, []);
 }
 
-function renderLineSegment(segment) {
-  return `<li><strong>${segment.line}</strong>: ${segment.stations.join(" -> ")}</li>`;
+function renderTimelineSegment(segment, index, total) {
+  const color = lineColors[segment.line] || "#0b7285";
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  const stationDots = segment.stations.map((name, i) => {
+    const isSegFirst = i === 0;
+    const isSegLast = i === segment.stations.length - 1;
+    const isTransfer = (isSegFirst && !isFirst) || (isSegLast && !isLast);
+    const dotClass = isTransfer ? "timeline-dot transfer" : "timeline-dot";
+
+    return `
+      <div class="timeline-stop">
+        <span class="${dotClass}" style="border-color:${color}; ${isTransfer ? 'background:' + color : ''}"></span>
+        <span class="timeline-stop-name${isTransfer ? ' transfer-name' : ''}">${name}</span>
+      </div>
+    `;
+  }).join("");
+
+  const transferLabel = !isLast
+    ? `<div class="transfer-badge">🔄 Chuyển tuyến</div>`
+    : "";
+
+  return `
+    <div class="timeline-segment">
+      <div class="timeline-line-badge" style="background:${color}">
+        ${segment.line}
+      </div>
+      <div class="timeline-track" style="--line-color:${color}">
+        ${stationDots}
+      </div>
+    </div>
+    ${transferLabel}
+  `;
 }
 
 function updateMarkerIcons() {
@@ -510,8 +581,43 @@ function edgeStyle(metroEdge) {
 
 function isEdgeVisible(metroEdge) {
   if (pathEdgeKeys.has(metroEdge.id)) return true;
+  if (showAllLines) return true;
   if (!activeStationId) return false;
   return metroEdge.from === activeStationId || metroEdge.to === activeStationId;
+}
+
+function toggleShowAllLines() {
+  showAllLines = !showAllLines;
+  renderAll();
+}
+
+function renderToggleButton() {
+  const btn = document.getElementById("toggleLinesBtn");
+  btn.textContent = showAllLines ? "Ẩn tất cả tuyến" : "Hiện tất cả tuyến";
+  btn.classList.toggle("active", showAllLines);
+}
+
+function renderLineLegend() {
+  const legend = document.getElementById("lineLegend");
+  const list = document.getElementById("lineLegendList");
+
+  if (!showAllLines) {
+    legend.style.display = "none";
+    return;
+  }
+
+  legend.style.display = "";
+
+  const lineNames = Object.keys(lineColors);
+  list.innerHTML = lineNames.map((lineName) => {
+    const color = lineColors[lineName];
+    return `
+      <div class="line-legend-item">
+        <span class="line-color-swatch" style="background:${color}"></span>
+        <span class="line-legend-name">${lineName}</span>
+      </div>
+    `;
+  }).join("");
 }
 
 function toggleForbidden(edgeId) {
@@ -550,4 +656,40 @@ function haversine(a, b) {
 
 function toRadians(degrees) {
   return (degrees * Math.PI) / 180;
+}
+
+// ── Notification Modal ──
+
+const WARNING_ICON = `
+  <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+  <line x1="12" y1="9" x2="12" y2="13"/>
+  <line x1="12" y1="17" x2="12.01" y2="17"/>
+`;
+
+const ERROR_ICON = `
+  <circle cx="12" cy="12" r="10"/>
+  <line x1="15" y1="9" x2="9" y2="15"/>
+  <line x1="9" y1="9" x2="15" y2="15"/>
+`;
+
+function showNotify(type, title, message) {
+  const overlay = document.getElementById("notifyOverlay");
+  const iconWrap = document.getElementById("notifyIconWrap");
+  const icon = document.getElementById("notifyIcon");
+  const titleEl = document.getElementById("notifyTitle");
+  const messageEl = document.getElementById("notifyMessage");
+  const closeBtn = document.getElementById("notifyCloseBtn");
+
+  iconWrap.className = "notify-icon-wrap " + type;
+  icon.innerHTML = type === "error" ? ERROR_ICON : WARNING_ICON;
+  titleEl.textContent = title;
+  messageEl.innerHTML = message;
+  closeBtn.className = "notify-close-btn " + type;
+
+  overlay.classList.add("visible");
+}
+
+function closeNotify(event) {
+  if (event && event.target !== document.getElementById("notifyOverlay")) return;
+  document.getElementById("notifyOverlay").classList.remove("visible");
 }

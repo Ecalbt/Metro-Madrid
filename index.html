@@ -20,7 +20,13 @@
         <header class="panel-header">
           <p class="eyebrow">Intro AI Project</p>
           <h1>Madrid Metro </h1>
+          <button id="toggleLinesBtn" type="button" class="toggle-lines-btn">Hiện tất cả tuyến</button>
         </header>
+
+        <section id="lineLegend" class="panel-section line-legend" style="display:none;">
+          <h2>Danh sách tuyến</h2>
+          <div id="lineLegendList" class="line-legend-list"></div>
+        </section>
 
         <section class="panel-section">
           <h2>Chọn điểm trên bản đồ</h2>
@@ -63,6 +69,23 @@
           </div>
         </section>
       </aside>
+
+      <!-- Modal thông báo -->
+      <div id="notifyOverlay" class="notify-overlay" onclick="closeNotify(event)">
+        <div class="notify-modal" onclick="event.stopPropagation()">
+          <div class="notify-icon-wrap" id="notifyIconWrap">
+            <svg id="notifyIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Default: warning icon -->
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 id="notifyTitle" class="notify-title">Thông báo</h3>
+          <p id="notifyMessage" class="notify-message">Nội dung thông báo</p>
+          <button id="notifyCloseBtn" class="notify-close-btn" onclick="closeNotify()">Đã hiểu</button>
+        </div>
+      </div>
     </main>
 
     <script
